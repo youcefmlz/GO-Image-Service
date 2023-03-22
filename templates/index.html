@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Random Image</title>
+
+</head>
+<body>
+    <div id="my-bar">
+        <button onclick="addImage()">Add an Image</button>
+    </div>
+    <div>
+        <img id="random-image" src="{{.}}" alt="Random Image" >
+    </div>
+    <button onclick="outputRandomImage()" > Get an Image</button>
+    <script>
+        function outputRandomImage(){
+            window.location.reload();
+        }
+        function addImage() {
+            var url = prompt("Enter the URL of the image:");
+            var data = { "name": "New Image", "url": url };
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/addimage");
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            console.log(JSON.stringify(data));
+            xhr.send(JSON.stringify(data));
+            
+        }
+    </script>
+
+    
+</body>
+</html>
